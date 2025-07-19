@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSL Certificate Checker</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-shield-alt"></i> SSL Certificate Checker</h1>
+            <p>Monitor your SSL certificates expiration dates</p>
+        </header>
+
+        <div class="url-management">
+            <div class="add-url-section">
+                <h2>Add New URL</h2>
+                <div class="input-group">
+                    <input type="text" id="urlInput" placeholder="Enter URL (e.g., example.com or https://example.com)" />
+                    <button id="addUrlBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add URL
+                    </button>
+                </div>
+            </div>
+
+            <div class="urls-section">
+                <div class="section-header">
+                    <h2>Saved URLs (<span id="urlCount">0</span>)</h2>
+                    <div class="action-buttons">
+                        <button id="checkAllBtn" class="btn btn-success">
+                            <i class="fas fa-sync-alt"></i> Check All SSL Certificates
+                        </button>
+                        <button id="clearAllBtn" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <div id="urlsList" class="urls-list">
+                    <!-- URLs will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="status-legend">
+            <h3>Status Legend & Tools</h3>
+            <div class="legend-items">
+                <span class="legend-item green">
+                    <i class="fas fa-circle"></i> Good (30+ days)
+                </span>
+                <span class="legend-item yellow">
+                    <i class="fas fa-circle"></i> Warning (10-30 days)
+                </span>
+                <span class="legend-item orange">
+                    <i class="fas fa-circle"></i> Alert (3-10 days)
+                </span>
+                <span class="legend-item red">
+                    <i class="fas fa-circle"></i> Critical (0-3 days)
+                </span>
+                <span class="legend-item grey">
+                    <i class="fas fa-circle"></i> Expired
+                </span>
+            </div>
+            <div class="tools-info">
+                <p><i class="fas fa-globe" style="color: #38ef7d;"></i> <strong>DNS Button:</strong> Check ACME challenge records for Let's Encrypt certificate troubleshooting</p>
+            </div>
+        </div>
+
+        <div class="logs-section">
+            <h2>Check Logs</h2>
+            <div class="logs-controls">
+                <input type="date" id="logDate" />
+                <button id="loadLogsBtn" class="btn btn-info">
+                    <i class="fas fa-file-alt"></i> Load Logs
+                </button>
+            </div>
+            <div id="logsContainer" class="logs-container">
+                <!-- Logs will be populated here -->
+            </div>
+        </div>
+
+        <div class="progress-bar" id="progressBar" style="display: none;">
+            <div class="progress-fill"></div>
+            <span class="progress-text">Checking certificates... <span id="progressCount">0</span>/<span id="progressTotal">0</span></span>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
